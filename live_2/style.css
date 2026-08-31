@@ -2987,22 +2987,23 @@ ol {
   border-radius: 4px;
 }
 
-/* Action Cluster */
+/* Action Cluster (Desktop Side by Side) */
 .comp-action-cluster {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 .btn-comp-details {
-  height: 36px;
-  padding: 0 12px;
+  height: 38px;
+  padding: 0 10px;
   background: #FFFFFF;
   border: 1.5px solid #D2E4D8;
   border-radius: 6px;
   color: #042516;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
@@ -3010,21 +3011,23 @@ ol {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 1 1 0;
 }
 
 .btn-comp-details:hover {
   border-color: #0B4D2A;
   background: #F4F8F5;
+  color: #0A6034;
 }
 
 .btn-comp-cart {
-  height: 36px;
-  padding: 0 12px;
+  height: 38px;
+  padding: 0 10px;
   background: #F07C0A;
   border: none;
   border-radius: 6px;
   color: #FFFFFF;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
@@ -3034,6 +3037,7 @@ ol {
   white-space: nowrap;
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(240, 124, 10, 0.25);
+  flex: 1 1 0;
 }
 
 .btn-comp-cart:hover {
