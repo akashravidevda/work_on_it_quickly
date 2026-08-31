@@ -1870,34 +1870,70 @@ function handleQuickEnquirySubmit(e) {
   const phoneInput = document.getElementById('enquiryPhone');
   const productInput = document.getElementById('enquiryProduct');
   const msgInput = document.getElementById('enquiryMessage');
+  const charCountEl = document.getElementById('enquiryCharCount');
 
   let valid = true;
-  document.getElementById('enquiryNameError').textContent = '';
-  document.getElementById('enquiryPhoneError').textContent = '';
+  if (document.getElementById('enquiryNameError')) document.getElementById('enquiryNameError').textContent = '';
+  if (document.getElementById('enquiryPhoneError')) document.getElementById('enquiryPhoneError').textContent = '';
+  if (document.getElementById('enquiryMsgError')) document.getElementById('enquiryMsgError').textContent = '';
 
-  if (!nameInput.value.trim()) {
-    document.getElementById('enquiryNameError').textContent = 'Please enter your name.';
+  if (!nameInput || !nameInput.value.trim()) {
+    if (document.getElementById('enquiryNameError')) document.getElementById('enquiryNameError').textContent = 'Please enter your full name.';
+    if (nameInput) nameInput.classList.add('is-invalid');
     valid = false;
+  } else if (nameInput) {
+    nameInput.classList.remove('is-invalid');
   }
 
-  const phoneVal = phoneInput.value.trim();
+  const phoneVal = phoneInput ? phoneInput.value.trim() : '';
   if (!phoneVal || !/^[6-9]\d{9}$/.test(phoneVal)) {
-    document.getElementById('enquiryPhoneError').textContent = 'Please enter a valid 10-digit mobile number.';
+    if (document.getElementById('enquiryPhoneError')) document.getElementById('enquiryPhoneError').textContent = 'Please enter a valid 10-digit mobile number.';
+    if (phoneInput) phoneInput.classList.add('is-invalid');
     valid = false;
+  } else if (phoneInput) {
+    phoneInput.classList.remove('is-invalid');
+  }
+
+  if (!productInput || !productInput.value) {
+    if (document.getElementById('enquiryMsgError')) document.getElementById('enquiryMsgError').textContent = 'Please select an equipment type.';
+    if (productInput) productInput.classList.add('is-invalid');
+    valid = false;
+  } else if (productInput) {
+    productInput.classList.remove('is-invalid');
   }
 
   if (!valid) return;
 
-  const msg = `Hello Vijayashri Agro Mart,\n\nInquiry Details:\nName: ${nameInput.value.trim()}\nMobile: ${phoneVal}\nEquipment: ${productInput.value}\nMessage: ${msgInput.value.trim() || 'Please provide equipment pricing and details.'}`;
+  const msg = `Hello Vijayashri Agro Mart,\n\n🌾 Equipment Inquiry Details:\n• Name: ${nameInput.value.trim()}\n• Mobile: ${phoneVal}\n• Equipment: ${productInput.value}\n• Requirement: ${msgInput && msgInput.value.trim() ? msgInput.value.trim() : 'Please provide quotation, subsidy details and availability.'}`;
   const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
-  showToast('Inquiry submitted successfully!', 'success');
-  nameInput.value = '';
-  phoneInput.value = '';
-  msgInput.value = '';
+  showToast('Inquiry submitted! Opening WhatsApp...', 'success');
+  
+  if (nameInput) nameInput.value = '';
+  if (phoneInput) phoneInput.value = '';
+  if (msgInput) msgInput.value = '';
+  if (productInput) productInput.selectedIndex = 0;
+  if (charCountEl) charCountEl.textContent = '0 / 500';
 
   window.open(url, '_blank');
 }
+
+// Live character counter and form binder for Quick Enquiry Form
+document.addEventListener('DOMContentLoaded', () => {
+  const enquiryForm = document.getElementById('quickEnquiryForm');
+  const msgInput = document.getElementById('enquiryMessage');
+  const charCountEl = document.getElementById('enquiryCharCount');
+
+  if (msgInput && charCountEl) {
+    msgInput.addEventListener('input', () => {
+      charCountEl.textContent = `${msgInput.value.length} / 500`;
+    });
+  }
+
+  if (enquiryForm) {
+    enquiryForm.addEventListener('submit', handleQuickEnquirySubmit);
+  }
+});
 
 function openLegalModal(type) {
   const modalBackdrop = document.getElementById('legalModalBackdrop');
