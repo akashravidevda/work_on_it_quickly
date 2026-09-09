@@ -18,19 +18,18 @@ const CONFIG = {
   tagline: 'शेतकऱ्यांच्या हक्काचे ठिकाण',
   officialLocation: 'Nachane, Ratnagiri, Maharashtra - 415639',
   email: 'kunal.5786@gmail.com',
-  officialMobile: '9975726256',
+  officialMobile: '8369314833',
   udyamRegistration: 'UDYAM-MH-28-0001865',
   
   // Central WhatsApp number for enquiries and order routing
-  whatsappNumber: '919975726256',
-  upiId: '9975726256@okbizaxis',
+  whatsappNumber: '918369314833',
+  upiId: '8369314833@okbizaxis',
   upiMerchantName: 'Vijayashri Agro Mart',
   tokenBookingAmount: 1000,
   
   // Alternate marketing phone numbers found on authentic creatives
   creativePhoneNumbers: [
     '8369314833',
-    '9975726256',
     '9423292359',
     '8329074990',
     '7758018704'
@@ -39,16 +38,17 @@ const CONFIG = {
   // LocalStorage Keys
   storageKeys: {
     cart: 'vijayashri_agro_cart',
-    orders: 'vijayashri_agro_orders'
+    orders: 'vijayashri_agro_orders',
+    products: 'vijayashri_agro_products'
   }
 };
 
 /**
  * ----------------------------------------------------------------------------
- * 2. AUTHENTIC PRODUCT CATALOG DATA
+ * 2. AUTHENTIC PRODUCT CATALOG DATA (DEFAULT SEED)
  * ----------------------------------------------------------------------------
  */
-const PRODUCT_CATALOG = [
+const DEFAULT_PRODUCT_CATALOG = [
   {
     id: 'stihl-fs3001',
     category: 'stihl',
@@ -338,10 +338,44 @@ const PRODUCT_CATALOG = [
 ];
 
 /**
- * ----------------------------------------------------------------------------
- * 3. APPLICATION STATE
- * ----------------------------------------------------------------------------
+ * Dynamic Product Catalog Loader & Persistence
  */
+let PRODUCT_CATALOG = loadProductCatalog();
+
+function loadProductCatalog() {
+  try {
+    const stored = localStorage.getItem(CONFIG.storageKeys.products);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to parse stored product catalog from localStorage:', e);
+  }
+  // Initialize storage with default catalog if absent
+  try {
+    localStorage.setItem(CONFIG.storageKeys.products, JSON.stringify(DEFAULT_PRODUCT_CATALOG));
+  } catch (e) {
+    console.warn('Failed to initialize products in localStorage:', e);
+  }
+  return [...DEFAULT_PRODUCT_CATALOG];
+}
+
+function refreshProductCatalog() {
+  PRODUCT_CATALOG = loadProductCatalog();
+  updateFilterPillCounts();
+  renderProducts();
+}
+
+// Real-time synchronization across multiple open tabs (e.g. Admin Tab & Store Tab)
+window.addEventListener('storage', (e) => {
+  if (e.key === CONFIG.storageKeys.products) {
+    refreshProductCatalog();
+  }
+});
+
 /**
  * ----------------------------------------------------------------------------
  * 3. APPLICATION STATE
@@ -1526,7 +1560,7 @@ function updateUpiPaymentDetails() {
     amtDisplay.textContent = `₹${totalPrice > 0 ? totalPrice.toLocaleString('en-IN') : tokenAmt.toLocaleString('en-IN')} (Total Payable)`;
   }
 
-  const upiId = CONFIG.upiId || '9975726256@okbizaxis';
+  const upiId = CONFIG.upiId || '8369314833@okbizaxis';
   const upiName = encodeURIComponent(CONFIG.upiMerchantName || 'Vijayashri Agro Mart');
   const payAmt = totalPrice > 0 ? totalPrice : tokenAmt;
   const note = encodeURIComponent('Vijayashri Agro Mart Machinery Order');
@@ -1544,7 +1578,7 @@ function updateUpiPaymentDetails() {
 }
 
 function copyUpiId() {
-  const upiId = CONFIG.upiId || '9975726256@okbizaxis';
+  const upiId = CONFIG.upiId || '8369314833@okbizaxis';
   const btnText = document.getElementById('copyUpiBtnText');
   
   if (navigator.clipboard && navigator.clipboard.writeText) {

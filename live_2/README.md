@@ -86,16 +86,16 @@ const CONFIG = {
   tagline: 'शेतकऱ्यांच्या हक्काचे ठिकाण',
   officialLocation: 'Nachane, Ratnagiri, Maharashtra - 415639',
   email: 'kunal.5786@gmail.com',
-  officialMobile: '9975726256',
+  officialMobile: '8369314833',
   udyamRegistration: 'UDYAM-MH-28-0001865',
   
-  // Update WhatsApp number here (include country code without + or spaces, e.g., '919975726256'):
-  whatsappNumber: '919975726256',
+  // Update WhatsApp number here (include country code without + or spaces, e.g., '918369314833'):
+  whatsappNumber: '918369314833',
   
   // Marketing phone numbers fallback list:
   creativePhoneNumbers: [
     '8369314833',
-    '9975726256',
+    '8369314833',
     '9423292359',
     '8329074990',
     '7758018704'

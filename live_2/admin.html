@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vijayshri Admin Dashboard — Product Catalog Manager</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts: Inter & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Admin Stylesheet -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+  <!-- App Container -->
+  <div class="admin-app-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <!-- Top Brand Logo -->
+      <div class="sidebar-brand">
+        <div class="brand-symbol">
+          <svg viewBox="0 0 36 36" fill="none" class="brand-svg">
+            <path d="M18 34C18 34 19 24 28 20C19 18 18 2 18 2C18 2 17 18 8 20C17 24 18 34 18 34Z" fill="#22C55E" />
+            <path d="M27 11C23 15 19 17 18 17C17 17 13 15 9 11C13 7 17 5 18 5C19 5 23 7 27 11Z" fill="#EAB308" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Vijayshri</span>
+          <span class="brand-sub">ADMIN DASHBOARD</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Management</div>
+        <button class="nav-item active" data-tab="productsTab" id="tabBtnProducts">
+          <div class="nav-item-left">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+            <span>Products Catalog</span>
+          </div>
+          <span class="nav-counter bg-emerald-badge" id="sidebarProductCount">8</span>
+        </button>
+
+        <button class="nav-item" data-tab="ordersTab" id="tabBtnOrders">
+          <div class="nav-item-left">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path>
+              <rect x="9" y="3" width="6" height="4" rx="1.5"></rect>
+              <path d="M9 14l2 2 4-4"></path>
+            </svg>
+            <span>Orders & Inquiries</span>
+          </div>
+          <span class="nav-counter count-orders bg-amber-badge" id="sidebarOrderCount" style="display: none;">0</span>
+        </button>
+
+        <div class="nav-section-label">System & Tools</div>
+        <button class="nav-item" data-tab="toolsTab" id="tabBtnTools">
+          <div class="nav-item-left">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+            <span>Backup & Sync Tools</span>
+          </div>
+        </button>
+
+        <a href="index.html" class="nav-item nav-store-link" target="_blank" rel="noopener noreferrer">
+          <div class="nav-item-left">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>View Live Store</span>
+          </div>
+        </a>
+      </nav>
+
+      <!-- Bottom Status Card & Organic Watermark -->
+      <div class="sidebar-footer">
+        <div class="store-badge-card">
+          <span class="status-indicator"></span>
+          <div class="sync-info">
+            <strong>Store Live Sync</strong>
+            <span class="sync-sub">Local Storage Connected</span>
+            <small class="sync-time">Last synced: 2 mins ago</small>
+          </div>
+        </div>
+
+        <div class="sidebar-bottom-motto">
+          <svg viewBox="0 0 120 80" fill="none" class="motto-leaves" aria-hidden="true">
+            <path d="M20 70C20 40 45 25 70 20C45 35 35 60 20 70Z" fill="rgba(34, 197, 94, 0.15)" />
+            <path d="M40 75C50 45 80 30 110 25C80 45 70 70 40 75Z" fill="rgba(34, 197, 94, 0.1)" />
+          </svg>
+          <p class="motto-text">Empowering Farmers with Better Tools</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main">
+
+      <!-- Top Header Bar -->
+      <header class="admin-header">
+        <div class="header-left">
+          <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Toggle Sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          
+          <div class="global-search-bar">
+            <svg class="global-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="globalSearchInput" placeholder="Search anything..." class="global-search-input">
+            <kbd class="shortcut-badge">⌘ K</kbd>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Notifications Bell -->
+          <button class="header-icon-btn" title="Notifications" id="notificationsBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="unread-dot" style="display: none;"></span>
+          </button>
+
+          <!-- User Profile Dropdown -->
+          <div class="admin-user-profile">
+            <div class="user-avatar-circle">A</div>
+            <div class="user-info-text">
+              <span class="user-name">Admin</span>
+              <span class="user-role">Vijayshri</span>
+            </div>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Banner / Page Header Hero Area -->
+      <section class="admin-banner-hero">
+        <div class="banner-content-left">
+          <div class="banner-tag">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="tag-leaf-icon">
+              <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
+            </svg>
+            <span>AGRICULTURAL EQUIPMENT</span>
+          </div>
+          <h1 class="banner-title" id="pageHeaderTitle">Product Catalog Manager</h1>
+          <p class="banner-sub">Manage, update, edit, and add agricultural equipment with instant live store sync.</p>
+        </div>
+
+        <div class="banner-content-right">
+          <div class="banner-actions">
+            <a href="index.html" class="btn-live-store-outline" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>View Live Store</span>
+            </a>
+            
+            <button class="btn-add-product-solid" id="headerAddProductBtn" onclick="openAddProductModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Add New Product</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard 4-Metric Cards Grid -->
+      <section class="admin-metrics-row">
+        
+        <!-- Metric 1: Total Products -->
+        <div class="metric-card card-emerald-accent">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-emerald">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <div class="metric-title-group">
+              <span class="metric-label">TOTAL PRODUCTS</span>
+            </div>
+          </div>
+          <div class="metric-middle-row">
+            <strong class="metric-value" id="metricTotalProducts">8</strong>
+            <span class="metric-trend text-positive">↗ +12% <small>vs last month</small></span>
+          </div>
+          <div class="metric-bottom-row">
+            <span class="metric-status-dot dot-green"></span>
+            <span class="metric-status-text" id="metricInStockCount">8 In Stock</span>
+          </div>
+          <div class="card-wave-accent wave-emerald"></div>
+        </div>
+
+        <!-- Metric 2: Equipment Brands -->
+        <div class="metric-card card-amber-accent">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <div class="metric-title-group">
+              <span class="metric-label">EQUIPMENT BRANDS</span>
+            </div>
+          </div>
+          <div class="metric-middle-row">
+            <strong class="metric-value" id="metricTotalBrands">5</strong>
+            <span class="metric-trend text-positive">↗ +8% <small>vs last month</small></span>
+          </div>
+          <div class="metric-bottom-row">
+            <span class="metric-status-text" id="metricCategoriesCount">3 Categories</span>
+          </div>
+          <div class="card-wave-accent wave-amber"></div>
+        </div>
+
+        <!-- Metric 3: Customer Orders -->
+        <div class="metric-card card-blue-accent">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </div>
+            <div class="metric-title-group">
+              <span class="metric-label">CUSTOMER ORDERS</span>
+            </div>
+          </div>
+          <div class="metric-middle-row">
+            <strong class="metric-value" id="metricTotalOrders">0</strong>
+            <span class="metric-trend text-neutral">— 0% <small>vs last month</small></span>
+          </div>
+          <div class="metric-bottom-row">
+            <span class="metric-status-dot dot-amber"></span>
+            <span class="metric-status-text" id="metricPendingOrders">0 Inquiries</span>
+          </div>
+          <div class="card-wave-accent wave-blue"></div>
+        </div>
+
+        <!-- Metric 4: Catalog Price Range -->
+        <div class="metric-card card-purple-accent">
+          <div class="metric-top-row">
+            <div class="metric-icon-box bg-purple">
+              <span class="rupee-icon">₹</span>
+            </div>
+            <div class="metric-title-group">
+              <span class="metric-label">CATALOG PRICE RANGE</span>
+            </div>
+          </div>
+          <div class="metric-middle-row">
+            <strong class="metric-value price-range-val" id="metricPriceRange">₹15.9K – ₹65.0K</strong>
+          </div>
+          <div class="metric-bottom-row">
+            <span class="metric-status-text text-muted">Official Dealer Rates</span>
+          </div>
+          <div class="card-wave-accent wave-purple"></div>
+        </div>
+
+      </section>
+
+      <!-- TAB 1: Products Catalog -->
+      <section class="admin-tab-content active" id="productsTab">
+        
+        <!-- Search, Filter & View Controls -->
+        <div class="catalog-control-panel">
+          <div class="search-box-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Search equipment by name, Marathi name, brand, or specifications...">
+            <button class="search-clear-btn" id="adminSearchClear" style="display: none;">&times;</button>
+          </div>
+
+          <div class="filter-controls-cluster">
+            <!-- Category Pills -->
+            <div class="category-pills-row" id="adminCategoryPills">
+              <button class="cat-pill active" data-filter="all">All (<span id="catCountAll">8</span>)</button>
+              <button class="cat-pill" data-filter="stihl">STIHL (<span id="catCountStihl">4</span>)</button>
+              <button class="cat-pill" data-filter="crop-reaper">Crop Reaper (<span id="catCountReaper">1</span>)</button>
+              <button class="cat-pill" data-filter="generators">Generators (<span id="catCountGenerators">3</span>)</button>
+              <button class="cat-pill" data-filter="other">Custom / Other (<span id="catCountOther">0</span>)</button>
+            </div>
+
+            <!-- View Switcher -->
+            <div class="view-switch-btns">
+              <button class="view-btn active" id="tableViewBtn" title="Table View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+              </button>
+              <button class="view-btn" id="gridViewBtn" title="Card Grid View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                  <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                  <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                  <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table View Container -->
+        <div class="admin-table-card" id="adminTableContainer">
+          <div class="table-responsive">
+            <table class="admin-data-table">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">IMAGE <span class="sort-indicator">↕</span></th>
+                  <th>PRODUCT DETAILS <span class="sort-indicator">↕</span></th>
+                  <th>CATEGORY & BRAND <span class="sort-indicator">↕</span></th>
+                  <th>PRICE & MRP <span class="sort-indicator">↕</span></th>
+                  <th>STOCK STATUS <span class="sort-indicator">↕</span></th>
+                  <th>KEY SPECS <span class="sort-indicator">↕</span></th>
+                  <th style="width: 130px; text-align: right;">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="adminProductsTableBody">
+                <!-- Injected dynamically by admin.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div class="admin-empty-state" id="adminProductsEmpty" style="display: none;">
+            <div class="empty-icon">🔍</div>
+            <h3>No Products Found</h3>
+            <p>No agricultural equipment matches your search or filter.</p>
+            <button class="btn-action-outline" onclick="resetAdminSearch()">Reset Search</button>
+          </div>
+        </div>
+
+        <!-- Grid View Container -->
+        <div class="admin-cards-grid" id="adminGridContainer" style="display: none;">
+          <!-- Injected dynamically by admin.js -->
+        </div>
+
+      </section>
+
+      <!-- TAB 2: Orders & Customer Inquiries -->
+      <section class="admin-tab-content" id="ordersTab">
+        
+        <!-- Orders Banner Hero -->
+        <div class="admin-banner-hero orders-banner-hero">
+          <div class="banner-content-left">
+            <div class="banner-tag orders-tag">
+              <span class="orders-tag-dot"></span>
+              <span>ORDERS & INQUIRIES</span>
+            </div>
+            <h1 class="banner-title">Customer Inquiries & Checkout Orders</h1>
+            <p class="banner-sub">Orders and machinery inquiries submitted through the storefront with 1-click WhatsApp customer contact.</p>
+          </div>
+
+          <div class="banner-content-right">
+            <div class="refresh-action-wrap">
+              <button class="btn-refresh-orders" onclick="loadAdminOrders()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M23 4v6h-6"></path>
+                  <path d="M1 20v-6h6"></path>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>Refresh Orders</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders 4-Metric Cards Grid -->
+        <div class="admin-metrics-row orders-metrics-row">
+          
+          <!-- Card 1: Total Orders -->
+          <div class="metric-card card-emerald-accent">
+            <div class="metric-top-row">
+              <div class="metric-icon-box bg-emerald">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+              </div>
+              <div class="metric-title-group">
+                <span class="metric-label">TOTAL ORDERS</span>
+              </div>
+            </div>
+            <div class="metric-middle-row">
+              <strong class="metric-value" id="metricOrdersTotal">0</strong>
+            </div>
+            <div class="metric-bottom-row">
+              <span class="metric-status-text text-muted" id="metricOrdersSub">No orders yet</span>
+            </div>
+            <div class="card-wave-accent wave-emerald"></div>
+          </div>
+
+          <!-- Card 2: Customer Inquiries -->
+          <div class="metric-card card-blue-accent">
+            <div class="metric-top-row">
+              <div class="metric-icon-box bg-blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+              </div>
+              <div class="metric-title-group">
+                <span class="metric-label">CUSTOMER INQUIRIES</span>
+              </div>
+            </div>
+            <div class="metric-middle-row">
+              <strong class="metric-value" id="metricInquiriesTotal">0</strong>
+            </div>
+            <div class="metric-bottom-row">
+              <span class="metric-status-text text-muted" id="metricInquiriesSub">No inquiries yet</span>
+            </div>
+            <div class="card-wave-accent wave-blue"></div>
+          </div>
+
+          <!-- Card 3: Total Revenue -->
+          <div class="metric-card card-amber-accent">
+            <div class="metric-top-row">
+              <div class="metric-icon-box bg-amber">
+                <span class="rupee-icon">₹</span>
+              </div>
+              <div class="metric-title-group">
+                <span class="metric-label">TOTAL REVENUE</span>
+              </div>
+            </div>
+            <div class="metric-middle-row">
+              <strong class="metric-value" id="metricRevenueTotal">₹0</strong>
+            </div>
+            <div class="metric-bottom-row">
+              <span class="metric-status-text text-muted">From completed orders</span>
+            </div>
+            <div class="card-wave-accent wave-amber"></div>
+          </div>
+
+          <!-- Card 4: New Customers -->
+          <div class="metric-card card-purple-accent">
+            <div class="metric-top-row">
+              <div class="metric-icon-box bg-purple">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="metric-title-group">
+                <span class="metric-label">NEW CUSTOMERS</span>
+              </div>
+            </div>
+            <div class="metric-middle-row">
+              <strong class="metric-value" id="metricCustomersTotal">0</strong>
+            </div>
+            <div class="metric-bottom-row">
+              <span class="metric-status-text text-muted">This month</span>
+            </div>
+            <div class="card-wave-accent wave-purple"></div>
+          </div>
+
+        </div>
+
+        <!-- Orders Filter & Search Bar -->
+        <div class="orders-control-panel">
+          <div class="orders-status-pills" id="orderStatusFilterPills">
+            <button class="order-status-pill active" data-status="all">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pill-icon">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+              <span>All Orders</span> <span class="pill-badge" id="countOrdersAll">0</span>
+            </button>
+            <button class="order-status-pill" data-status="inquiry">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pill-icon">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              <span>New Inquiries</span> <span class="pill-badge" id="countOrdersInquiry">0</span>
+            </button>
+            <button class="order-status-pill" data-status="processing">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pill-icon">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Processing</span> <span class="pill-badge" id="countOrdersProcessing">0</span>
+            </button>
+            <button class="order-status-pill" data-status="completed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pill-icon">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>Completed</span> <span class="pill-badge" id="countOrdersCompleted">0</span>
+            </button>
+            <button class="order-status-pill" data-status="cancelled">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pill-icon">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+              </svg>
+              <span>Cancelled</span> <span class="pill-badge" id="countOrdersCancelled">0</span>
+            </button>
+          </div>
+
+          <div class="orders-search-filter-cluster">
+            <div class="orders-search-wrap">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="ordersSearchInput" class="orders-search-input" placeholder="Search by Order ID, customer name, phone, or location...">
+              <button class="orders-search-clear" id="ordersSearchClear" style="display: none;" onclick="clearOrdersSearch()" title="Clear search">&times;</button>
+            </div>
+
+            <div class="orders-filter-dropdown-wrapper">
+              <button class="btn-orders-filter" id="ordersFilterBtn" onclick="toggleOrdersFilterMenu(event)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span>Filter</span>
+                <span class="active-filter-indicator" id="activeFilterBadge" style="display: none;">•</span>
+                <svg class="chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              <!-- Filter Dropdown Panel -->
+              <div class="orders-filter-popover" id="ordersFilterPopover" style="display: none;">
+                <div class="filter-popover-header">
+                  <strong>Filter Orders</strong>
+                  <button type="button" class="btn-reset-filters" onclick="resetOrdersFilter()">Reset</button>
+                </div>
+                <div class="filter-popover-body">
+                  <div class="filter-field-group">
+                    <label class="filter-field-label">Payment Mode</label>
+                    <select id="filterPaymentMode" class="filter-select-input" onchange="applyOrdersFilters()">
+                      <option value="all">All Payment Methods</option>
+                      <option value="cash">Pay on Confirmation / Cash</option>
+                      <option value="online">Online / UPI</option>
+                    </select>
+                  </div>
+                  <div class="filter-field-group">
+                    <label class="filter-field-label">Date Range</label>
+                    <select id="filterDateRange" class="filter-select-input" onchange="applyOrdersFilters()">
+                      <option value="all">All Time</option>
+                      <option value="today">Today</option>
+                      <option value="week">Past 7 Days</option>
+                      <option value="month">This Month</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulk Selection Action Bar -->
+        <div class="orders-bulk-bar" id="ordersBulkBar" style="display: none;">
+          <div class="bulk-bar-info">
+            <span class="bulk-select-icon">✓</span>
+            <strong id="ordersBulkCount">1 order selected</strong>
+          </div>
+          <div class="bulk-bar-actions">
+            <button class="btn-bulk-action" onclick="bulkUpdateOrderStatus('Processing')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Mark Processing</span>
+            </button>
+            <button class="btn-bulk-action" onclick="bulkUpdateOrderStatus('Completed')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span>Mark Completed</span>
+            </button>
+            <button class="btn-bulk-action" onclick="bulkExportOrdersCSV()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export CSV</span>
+            </button>
+            <button class="btn-bulk-action btn-bulk-danger" onclick="bulkDeleteOrders()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Delete</span>
+            </button>
+            <button class="btn-bulk-cancel" onclick="deselectAllOrders()">Deselect</button>
+          </div>
+        </div>
+
+        <!-- Orders Table Card Container -->
+        <div class="admin-table-card">
+          <div class="table-responsive">
+            <table class="admin-data-table orders-data-table">
+              <thead>
+                <tr>
+                  <th class="th-checkbox">
+                    <input type="checkbox" id="selectAllOrdersCheckbox" class="admin-checkbox" onchange="toggleSelectAllOrders(this)" aria-label="Select all orders">
+                  </th>
+                  <th class="sortable-header" onclick="handleOrderSort('orderId')">
+                    <span>ORDER ID</span> <span class="sort-indicator" id="sort-orderId">↕</span>
+                  </th>
+                  <th class="sortable-header" onclick="handleOrderSort('customer')">
+                    <span>CUSTOMER & PHONE</span> <span class="sort-indicator" id="sort-customer">↕</span>
+                  </th>
+                  <th class="sortable-header" onclick="handleOrderSort('location')">
+                    <span>VILLAGE / LOCATION</span> <span class="sort-indicator" id="sort-location">↕</span>
+                  </th>
+                  <th>ITEMS ORDERED</th>
+                  <th class="sortable-header" onclick="handleOrderSort('amount')">
+                    <span>TOTAL AMOUNT</span> <span class="sort-indicator" id="sort-amount">↕</span>
+                  </th>
+                  <th class="sortable-header" onclick="handleOrderSort('payment')">
+                    <span>PAYMENT MODE</span> <span class="sort-indicator" id="sort-payment">↕</span>
+                  </th>
+                  <th class="sortable-header" onclick="handleOrderSort('status')">
+                    <span>STATUS</span> <span class="sort-indicator" id="sort-status">↕</span>
+                  </th>
+                  <th class="th-actions">QUICK ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="adminOrdersTableBody">
+                <!-- Injected dynamically by admin.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Orders Empty State (Matching reference illustration) -->
+          <div class="admin-empty-state orders-empty-box" id="adminOrdersEmpty" style="display: none;">
+            <div class="empty-box-illustration">
+              <div class="box-rays">✨</div>
+              <div class="box-emoji">📦</div>
+              <div class="box-leaves">🍃</div>
+            </div>
+            <h3 class="empty-state-title">No Customer Orders Yet</h3>
+            <p class="empty-state-desc">When farmers and customers place checkout orders or requests on the website, they will appear here automatically.</p>
+            <button class="btn-action-primary btn-empty-refresh" onclick="loadAdminOrders()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 4v6h-6"></path>
+                <path d="M1 20v-6h6"></path>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Refresh Orders</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: Backup, Sync & Settings -->
+      <section class="admin-tab-content" id="toolsTab">
+        <div class="tools-grid">
+          
+          <!-- Card 1: Catalog Export & Import -->
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <div class="tool-icon bg-blue">💾</div>
+              <div>
+                <h3>Catalog Backup & Transfer</h3>
+                <p>Download full product catalog JSON or import updated inventory.</p>
+              </div>
+            </div>
+            <div class="tool-card-body">
+              <p class="tool-desc">
+                Export your current catalog as a JSON file for backup. You can import this file on any computer or browser to instantly restore all products.
+              </p>
+              <div class="tool-actions-row">
+                <button class="btn-action-primary" onclick="exportCatalogJSON()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Export Catalog (.JSON)</span>
+                </button>
+
+                <label class="btn-action-outline file-upload-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span>Import Catalog (.JSON)</span>
+                  <input type="file" id="importJsonInput" accept=".json" onchange="handleImportJSON(event)" style="display: none;">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Factory Reset -->
+          <div class="tool-card border-warning">
+            <div class="tool-card-header">
+              <div class="tool-icon bg-amber">⚡</div>
+              <div>
+                <h3>Reset to Factory Catalog</h3>
+                <p>Restore the original 8 authentic products (STIHL, Really, Generators).</p>
+              </div>
+            </div>
+            <div class="tool-card-body">
+              <p class="tool-desc">
+                Use this to reset any custom changes or test edits back to the factory-seeded catalog.
+              </p>
+              <button class="btn-action-danger" onclick="confirmResetCatalog()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"></polyline>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                </svg>
+                <span>Reset to Factory Default</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ================= PRODUCT EDIT / ADD MODAL ================= -->
+  <div class="admin-modal-backdrop" id="productModalBackdrop" aria-hidden="true">
+    <div class="admin-modal-card product-edit-modal-card">
+      
+      <!-- Modal Top Header -->
+      <div class="admin-modal-header product-modal-header">
+        <div class="modal-header-brand-group">
+          <div class="modal-leaf-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;">
+              <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="modal-heading" id="productModalTitle">Edit Product</h2>
+            <p class="modal-sub">Update product details, specifications, pricing, and images. Changes will be reflected on the live store.</p>
+          </div>
+        </div>
+        <div class="modal-header-actions">
+          <span class="product-modal-store-status" id="modalLiveStatusBadge">● Live on Store</span>
+          <button type="button" class="modal-close-btn" onclick="closeProductModal()" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+
+      <!-- Top Product Summary Banner Bar -->
+      <div class="modal-prod-summary-banner" id="modalProdSummaryBanner">
+        <div class="summary-left-group">
+          <div class="summary-thumb-box">
+            <img id="summaryProdImg" src="assets/generated-products/stihl-fs3001-card.webp" alt="Product Thumbnail">
+          </div>
+          <div class="summary-details">
+            <h3 class="summary-prod-title" id="summaryProdTitle">STIHL FS 3001</h3>
+            <div class="summary-meta-row">
+              <span class="summary-brand-tag" id="summaryBrandTag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="meta-icon">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                STIHL | Brush Cutter
+              </span>
+              <span class="summary-stock-pill" id="summaryStockTag">● In Stock</span>
+            </div>
+            <div class="summary-sku-text" id="summarySkuText">SKU: STL-FS-3001</div>
+          </div>
+        </div>
+        <div class="summary-right-actions">
+          <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn-summary-view-store" id="summaryViewStoreBtn">
+            <span>View on Store</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Form with 2-Column Split Layout -->
+      <form id="productForm" onsubmit="handleProductFormSubmit(event)">
+        <input type="hidden" id="editProductId" value="">
+
+        <div class="modal-split-layout">
+          
+          <!-- Left Sidebar Navigation -->
+          <aside class="modal-nav-sidebar">
+            <div class="modal-nav-list">
+              <button type="button" class="modal-nav-item active" data-section="sectionBasic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                <span>Basic Details</span>
+              </button>
+
+              <button type="button" class="modal-nav-item" data-section="sectionPricing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                <span>Pricing & Offers</span>
+              </button>
+
+              <button type="button" class="modal-nav-item" data-section="sectionMedia">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <span>Images & Media</span>
+              </button>
+
+              <button type="button" class="modal-nav-item" data-section="sectionSpecs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Technical Specs</span>
+              </button>
+
+              <button type="button" class="modal-nav-item" data-section="sectionFeatures">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+                <span>Features & Applications</span>
+              </button>
+
+              <button type="button" class="modal-nav-item" onclick="triggerProductPreviewFromModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span>Preview</span>
+              </button>
+            </div>
+
+            <!-- Pro Tip Box -->
+            <div class="modal-pro-tip-box">
+              <div class="pro-tip-header">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="pro-tip-leaf">
+                  <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
+                </svg>
+                <strong>Pro Tip</strong>
+              </div>
+              <p class="pro-tip-text">Keep product information accurate and up to date for better customer trust and higher sales.</p>
+            </div>
+          </aside>
+
+          <!-- Right Content Area with Scrollable Sections -->
+          <div class="modal-form-content">
+            
+            <!-- Section 1: Basic Details & Brand -->
+            <section class="modal-form-section" id="sectionBasic">
+              <div class="section-badge-header">
+                <span class="section-step-num">1</span>
+                <div>
+                  <h4 class="section-heading-text">Basic Details & Brand</h4>
+                  <p class="section-sub-text">Product name, brand, category and basic information.</p>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-field">
+                  <label class="field-label" for="prodName">Product Name (English) <span class="req">*</span></label>
+                  <input type="text" id="prodName" class="admin-input" placeholder="e.g. STIHL FS 3001" required>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="prodMarathiName">Marathi Title</label>
+                  <input type="text" id="prodMarathiName" class="admin-input" placeholder="e.g. STIHL FS 3001 ब्रश कटर">
+                </div>
+              </div>
+
+              <div class="form-row-3">
+                <div class="form-field">
+                  <label class="field-label" for="prodBrand">Brand <span class="req">*</span></label>
+                  <input type="text" id="prodBrand" class="admin-input" placeholder="e.g. STIHL, Really, ELEMAX" required>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="prodCategory">Category <span class="req">*</span></label>
+                  <select id="prodCategory" class="admin-input" required>
+                    <option value="stihl">STIHL Equipment</option>
+                    <option value="crop-reaper">Crop Reaper</option>
+                    <option value="generators">Heavy Duty Generators</option>
+                    <option value="other">Agricultural Machinery</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label class="field-label" for="prodStock">Stock Status</label>
+                  <select id="prodStock" class="admin-input">
+                    <option value="In Stock">● In Stock (उपलब्ध)</option>
+                    <option value="Out of Stock">● Out of Stock</option>
+                    <option value="On Inquiry">● On Inquiry (चौकशीवर)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-field">
+                  <label class="field-label" for="prodSku">SKU / Model Number</label>
+                  <input type="text" id="prodSku" class="admin-input" placeholder="e.g. STL-FS-3001">
+                  <span class="field-hint">Unique product code for internal reference.</span>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="prodTagline">Tagline / Short Summary</label>
+                  <input type="text" id="prodTagline" class="admin-input" placeholder="e.g. हलके वजन आणि सुलभ वापर.">
+                  <span class="field-hint">A short line that appears on product cards.</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 2: Pricing & Savings -->
+            <section class="modal-form-section" id="sectionPricing">
+              <div class="section-badge-header">
+                <span class="section-step-num">2</span>
+                <div>
+                  <h4 class="section-heading-text">Pricing & Savings</h4>
+                  <p class="section-sub-text">Set selling price, MRP and view discount details.</p>
+                </div>
+              </div>
+
+              <div class="pricing-discount-row">
+                <div class="form-field pricing-input-field">
+                  <label class="field-label" for="prodPrice">Selling Price (₹) <span class="req">*</span></label>
+                  <input type="number" id="prodPrice" class="admin-input" placeholder="e.g. 15941" required min="0">
+                  <span class="field-hint">Enter 0 if price is only available on inquiry.</span>
+                </div>
+
+                <div class="form-field pricing-input-field">
+                  <label class="field-label" for="prodMrp">MRP Price (₹) <span class="req">*</span></label>
+                  <input type="number" id="prodMrp" class="admin-input" placeholder="e.g. 20468" min="0">
+                </div>
+
+                <!-- Live Discount Display Card -->
+                <div class="live-discount-card" id="liveDiscountCard">
+                  <div class="discount-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                      <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    </svg>
+                  </div>
+                  <div class="discount-text-wrap">
+                    <span class="discount-label">Discount</span>
+                    <strong class="discount-value" id="liveDiscountVal">₹4,527 (22% OFF)</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 3: Images & Media -->
+            <section class="modal-form-section" id="sectionMedia">
+              <div class="section-badge-header">
+                <span class="section-step-num">3</span>
+                <div>
+                  <h4 class="section-heading-text">Images & Media</h4>
+                  <p class="section-sub-text">Upload product images for gallery and preview.</p>
+                </div>
+              </div>
+
+              <div class="images-media-grid">
+                
+                <!-- Primary Image Column -->
+                <div class="primary-image-col">
+                  <label class="field-label">Primary Image <span class="req">*</span></label>
+                  
+                  <div class="primary-image-wrap">
+                    <div class="primary-preview-box" id="primaryImgPreviewBox">
+                      <img id="primaryImgPreview" src="assets/generated-products/stihl-fs3001-card.webp" alt="Primary Preview">
+                      <button type="button" class="btn-remove-primary-img" onclick="clearPrimaryImage()" title="Remove Image">&times;</button>
+                    </div>
+
+                    <label class="upload-dashed-card">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <strong>Upload Image</strong>
+                      <span>JPG, PNG, WebP Max 5MB</span>
+                      <input type="file" id="prodImageFileInput" accept="image/*" onchange="handleImageFileUpload(event)" style="display: none;">
+                    </label>
+                  </div>
+
+                  <!-- Direct URL Input (Secondary Option) -->
+                  <div style="margin-top: 8px;">
+                    <input type="text" id="prodImage" class="admin-input" placeholder="Or enter image URL (e.g. assets/...)">
+                  </div>
+                </div>
+
+                <!-- Gallery Images Column -->
+                <div class="gallery-images-col">
+                  <label class="field-label">Gallery Images</label>
+                  
+                  <div class="gallery-thumbs-row" id="galleryThumbsRow">
+                    <!-- Dynamic Thumbnails Injected Here -->
+                    <label class="gallery-add-card">
+                      <span class="plus-icon">+</span>
+                      <span>Add More</span>
+                      <input type="file" id="galleryFileInput" accept="image/*" multiple onchange="handleGalleryFileUpload(event)" style="display: none;">
+                    </label>
+                  </div>
+
+                  <!-- Hidden raw gallery input for form compatibility -->
+                  <input type="hidden" id="prodGallery" value="">
+                </div>
+
+              </div>
+            </section>
+
+            <!-- Section 4: Technical Specifications -->
+            <section class="modal-form-section" id="sectionSpecs">
+              <div class="section-badge-header section-header-with-btn">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="section-step-num">4</span>
+                  <div>
+                    <h4 class="section-heading-text">Technical Specifications</h4>
+                    <p class="section-sub-text">Add key technical details. Click "+ Add Specification" to include more.</p>
+                  </div>
+                </div>
+
+                <button type="button" class="btn-solid-add-spec" onclick="addSpecificationRow()">
+                  <span>+ Add Specification</span>
+                </button>
+              </div>
+
+              <div class="specs-builder-2col-grid" id="specsBuilderContainer">
+                <!-- Dynamic Key-Value Pairs Injected here -->
+              </div>
+            </section>
+
+            <!-- Section 5: Features & Recommended Applications -->
+            <section class="modal-form-section" id="sectionFeatures">
+              <div class="section-badge-header">
+                <span class="section-step-num">5</span>
+                <div>
+                  <h4 class="section-heading-text">Features & Recommended Applications</h4>
+                  <p class="section-sub-text">Add key features and suggest use cases (1 point per line).</p>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-field">
+                  <label class="field-label" for="prodFeatures">Features (1 per line)</label>
+                  <textarea id="prodFeatures" class="admin-textarea" rows="4" placeholder="High fuel efficiency with German engineering&#10;Lightweight and ergonomic balanced frame&#10;Effortless pull-start mechanism&#10;STIHL genuine world-class build quality"></textarea>
+                </div>
+                <div class="form-field">
+                  <label class="field-label" for="prodApplications">Applications (1 per line)</label>
+                  <textarea id="prodApplications" class="admin-textarea" rows="4" placeholder="Light garden and orchard weed trimming&#10;Farm boundary and pathway clearance&#10;Small to medium farmland maintenance"></textarea>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-action-outline" onclick="closeProductModal()">Cancel</button>
+          <button type="submit" class="btn-action-primary btn-save-changes" id="saveProductBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= ORDER DETAILS MODAL ================= -->
+  <div class="admin-modal-backdrop" id="orderModalBackdrop" aria-hidden="true">
+    <div class="admin-modal-card order-modal-card">
+      <div class="admin-modal-header order-modal-header">
+        <div class="order-modal-header-info">
+          <div class="order-modal-title-row">
+            <span class="order-modal-type-badge">STORE INVOICE</span>
+            <h2 class="modal-heading order-modal-title" id="orderModalHeading">Order Details</h2>
+            <button class="btn-copy-id" id="btnCopyModalOrderId" title="Copy Order ID" onclick="copyModalOrderId()" aria-label="Copy Order ID">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+          <p class="modal-sub order-modal-sub" id="orderModalSub">Customer Inquiry & Equipment Breakdown</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeOrderModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="admin-modal-body order-modal-body" id="orderModalContent">
+        <!-- Injected dynamically by admin.js -->
+      </div>
+      <div class="admin-modal-footer order-modal-footer">
+        <div class="footer-left-actions">
+          <button type="button" class="btn-modal-danger" id="orderModalDeleteBtn" onclick="deleteCurrentOrder()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            <span>Delete Order</span>
+          </button>
+        </div>
+        <div class="footer-right-actions">
+          <button type="button" class="btn-action-outline" id="orderModalPrintBtn" onclick="printCurrentOrderSlip()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Print Invoice</span>
+          </button>
+          <a id="orderModalWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-action">
+            <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>Customer WhatsApp</span>
+          </a>
+          <button type="button" class="btn-action-primary" onclick="closeOrderModal()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="admin-toast-container" id="adminToastContainer"></div>
+
+  <!-- Admin Logic Script -->
+  <script src="admin.js"></script>
+</body>
+
+</html>
