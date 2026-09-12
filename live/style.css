@@ -2688,10 +2688,6 @@ ol {
   align-items: center;
   justify-content: center;
 }
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .catalog-reassurance-note {
   margin-top: var(--space-2xl);

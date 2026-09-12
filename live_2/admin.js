@@ -31,8 +31,8 @@ const DEFAULT_SEED_CATALOG = [
       'assets/generated-products/stihl-fs3001-hero-desktop.webp',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 15941,
-    mrp: 20468,
+    price: 17000,
+    mrp: 20881,
     stock: 'In Stock',
     unitsAvailable: 8,
     isRecentlyUpdated: true,
@@ -71,8 +71,8 @@ const DEFAULT_SEED_CATALOG = [
       'assets/images/stihl-all-lineup.jpg',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 21990,
-    mrp: 24900,
+    price: 26000,
+    mrp: 31970,
     stock: 'In Stock',
     unitsAvailable: 5,
     specifications: {
@@ -110,8 +110,8 @@ const DEFAULT_SEED_CATALOG = [
       'assets/images/stihl-all-lineup.jpg',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 23990,
-    mrp: 27500,
+    price: 33000,
+    mrp: 41333,
     stock: 'In Stock',
     unitsAvailable: 6,
     specifications: {
@@ -149,8 +149,8 @@ const DEFAULT_SEED_CATALOG = [
       'assets/generated-products/stihl-fs250-use-case.webp',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 31490,
-    mrp: 35000,
+    price: 42000,
+    mrp: 51119,
     stock: 'In Stock',
     unitsAvailable: 4,
     specifications: {
@@ -188,8 +188,8 @@ const DEFAULT_SEED_CATALOG = [
       'assets/generated-products/really-cr-r35-s-use-case.webp',
       'assets/images/creative-really-reaper.jpg'
     ],
-    price: 25490,
-    mrp: 29000,
+    price: 16000,
+    mrp: 22000,
     stock: 'In Stock',
     unitsAvailable: 7,
     specifications: {
@@ -372,10 +372,13 @@ function initAdmin() {
  * DATA ACCESS & PERSISTENCE
  * ============================================================================
  */
+const ADMIN_CATALOG_SCHEMA_VER = '2026-09-12-v2';
+
 function loadAdminProducts() {
   try {
+    const rawVer = localStorage.getItem('vijayashri_catalog_ver');
     const raw = localStorage.getItem(STORAGE_KEYS.products);
-    if (raw) {
+    if (raw && rawVer === ADMIN_CATALOG_SCHEMA_VER) {
       const parsed = JSON.parse(raw);
       if (Array.isArray(parsed) && parsed.length > 0) {
         AdminState.products = parsed;
@@ -389,6 +392,9 @@ function loadAdminProducts() {
   // Seed default catalog
   AdminState.products = [...DEFAULT_SEED_CATALOG];
   saveProductsToStorage(AdminState.products);
+  try {
+    localStorage.setItem('vijayashri_catalog_ver', ADMIN_CATALOG_SCHEMA_VER);
+  } catch(e) {}
 }
 
 function saveProductsToStorage(products) {

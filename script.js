@@ -16,7 +16,7 @@ const CONFIG = {
   businessName: 'Vijayashri Agro Mart',
   marathiName: 'विजयश्री ॲग्रो मार्ट',
   tagline: 'शेतकऱ्यांच्या हक्काचे ठिकाण',
-  officialLocation: 'Nachane, Ratnagiri, Maharashtra - 415639',
+  officialLocation: 'Khanyalal Complex, UGF-8, Opp. S.T. Stand, Ratnagiri, Maharashtra',
   email: 'kunal.5786@gmail.com',
   officialMobile: '8369314833',
   udyamRegistration: 'UDYAM-MH-28-0001865',
@@ -62,8 +62,8 @@ const DEFAULT_PRODUCT_CATALOG = [
       'assets/generated-products/stihl-fs3001-hero-desktop.webp',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 17990,
-    mrp: 20500,
+    price: 17000,
+    mrp: 20881,
     stock: 'In Stock',
     specifications: {
       'Displacement': '25.4 cc',
@@ -99,8 +99,8 @@ const DEFAULT_PRODUCT_CATALOG = [
       'assets/images/stihl-all-lineup.jpg',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 21990,
-    mrp: 24900,
+    price: 26000,
+    mrp: 31970,
     stock: 'In Stock',
     specifications: {
       'Displacement': '40.2 cc',
@@ -136,8 +136,8 @@ const DEFAULT_PRODUCT_CATALOG = [
       'assets/images/stihl-all-lineup.jpg',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 23990,
-    mrp: 27500,
+    price: 33000,
+    mrp: 41333,
     stock: 'In Stock',
     specifications: {
       'Displacement': '30.8 cc',
@@ -173,8 +173,8 @@ const DEFAULT_PRODUCT_CATALOG = [
       'assets/generated-products/stihl-fs250-use-case.webp',
       'assets/images/creative-stihl.jpg'
     ],
-    price: 31490,
-    mrp: 35000,
+    price: 42000,
+    mrp: 51119,
     stock: 'In Stock',
     specifications: {
       'Displacement': '40.2 cc',
@@ -210,8 +210,8 @@ const DEFAULT_PRODUCT_CATALOG = [
       'assets/generated-products/really-cr-r35-s-use-case.webp',
       'assets/images/creative-really-reaper.jpg'
     ],
-    price: 25490,
-    mrp: 29000,
+    price: 16000,
+    mrp: 22000,
     stock: 'In Stock',
     specifications: {
       'Engine Model': '4 Stroke Engine',
@@ -342,10 +342,13 @@ const DEFAULT_PRODUCT_CATALOG = [
  */
 let PRODUCT_CATALOG = loadProductCatalog();
 
+const CATALOG_SCHEMA_VER = '2026-09-12-v2';
+
 function loadProductCatalog() {
   try {
+    const storedVer = localStorage.getItem('vijayashri_catalog_ver');
     const stored = localStorage.getItem(CONFIG.storageKeys.products);
-    if (stored) {
+    if (stored && storedVer === CATALOG_SCHEMA_VER) {
       const parsed = JSON.parse(stored);
       if (Array.isArray(parsed) && parsed.length > 0) {
         return parsed;
@@ -354,9 +357,10 @@ function loadProductCatalog() {
   } catch (e) {
     console.warn('Failed to parse stored product catalog from localStorage:', e);
   }
-  // Initialize storage with default catalog if absent
+  // Initialize storage with updated default catalog
   try {
     localStorage.setItem(CONFIG.storageKeys.products, JSON.stringify(DEFAULT_PRODUCT_CATALOG));
+    localStorage.setItem('vijayashri_catalog_ver', CATALOG_SCHEMA_VER);
   } catch (e) {
     console.warn('Failed to initialize products in localStorage:', e);
   }

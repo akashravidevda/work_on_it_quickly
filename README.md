@@ -84,7 +84,7 @@ const CONFIG = {
   businessName: 'Vijayashri Agro Mart',
   marathiName: 'विजयश्री ॲग्रो मार्ट',
   tagline: 'शेतकऱ्यांच्या हक्काचे ठिकाण',
-  officialLocation: 'Nachane, Ratnagiri, Maharashtra - 415639',
+  officialLocation: 'Khanyalal Complex, UGF-8, Opp. S.T. Stand, Ratnagiri, Maharashtra',
   email: 'kunal.5786@gmail.com',
   officialMobile: '8369314833',
   udyamRegistration: 'UDYAM-MH-28-0001865',
